@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 body {
   margin: 0;
@@ -11,8 +12,7 @@ body {
   margin: 0 auto;
   width: 1080px;
   height: 1920px;
-  background: #eeeeee;
-  border: 1px solid #000;
+  background: #ffffff;
 }
 
 .area {
@@ -20,25 +20,31 @@ body {
   height: 100%;
 }
 
-
-.areaInside {
+.toptext {
   width: 85%;
   margin: 0 auto;
-  margin-top: 10%;
+}
+
+.areaInside {
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .introductionText {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 75px;
   border-bottom: 5px solid #666;
   padding-bottom: 5px;
-  margin-bottom: 1%;
+  padding-top: 50px;
 }
 
 .desc {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 30px;
-  margin-bottom: 5%;
   text-align: justify;
 }
 
@@ -47,63 +53,149 @@ body {
   justify-content: space-between;
   width: 100%;
   flex-wrap: wrap;
+  overflow: auto;
+  height: 1080px;
 }
 
 .kabine {
-  width: 28%;
-  background: #dddddd;
-  height: 115px;
-  margin-bottom: 30px;
-  padding: 15px;
-  font-family: 'Lato', sans-serif;
-  box-shadow: 0px 0px 3px #666666;
+		width: 33.3%;
+		height: 360px;
+		background:#529e66;
+		font-family: 'Lato', sans-serif;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		position: relative;
+	}
+
+  .middle {
+    width: 33.4%
+  }
+
+	.kabineImg {
+		margin: 0 auto;
+		width: 65%;
+
+	}
+
+	.kabineImg img {
+		width: 100%;
+	}
+
+	.kabineNavn {
+		text-align: center;
+		font-size: 25px;
+		text-transform: uppercase;
+	}
+
+	.pris {
+		text-align: center;
+		font-size: 16px;
+	}
+
+	.tid {
+		height: 50px;
+		text-align: center;
+		font-size: 16px;
+	}
+
+	.info {
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: 15px;
+		border-radius: 50%;
+		height: 30px;
+		width: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: white;
+    margin-right: 20px;
+    margin-top: 20px;
+	}
+
+.sliderbox {
+  height: 150px;
+  width: 85%;
+  margin: 0 auto;
 }
 
-.kabine.active {
-  background: #5db583;
-}
-
-.kabine.disable {
-  background: #a03f3f;
-}
-
-.kabineInfo {
-  display: flex;
-  justify-content: space-between;
+.slider {
   width: 100%;
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  height: 49px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
-.infoKabine {
-  height: 115px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 70%;
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
 }
 
-.kabineNavn {
-  font-size: 27px;
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 50px; /* Set a specific slider handle width */
+  height: 50px; /* Slider handle height */
+  background: #333; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 10px;
 }
 
-.kabinePrisTid {
-  font-size: 22px;
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
 }
 
-.infostatus {
-  height: 115px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30%;
-  align-items: flex-end;
+.samletpris {
+  font-family: 'Lato', sans-serif;
+
 }
 
-.infoknap {
-  border: 2px solid #000;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
+.samletpris span {
+  font-size: 25px;
+}
+
+.samletpris b {
+  font-size: 35px;
+}
+
+.payment {
+  background: #ccc;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.paymentText {
+  font-family: 'Roboto', sans-serif;
+  font-size: 35px;
   text-align: center;
-  background: #cccccc;
-  font-size: 14px;
+  margin: 0 auto;
+  width: 500px;
+  border-bottom: 5px solid #666;
+  margin-bottom: 20px;
+}
+
+.paymentMethods {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+}
+
+
+.paymentMethods div img {
+  width: 200px;
 }
