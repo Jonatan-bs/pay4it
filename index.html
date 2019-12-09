@@ -9,10 +9,10 @@
     <section class="mainDisplay">
       <div class="area">
         <div class="areaInside">
-
+<div>
           <div class="toptext">
           <div class="introductionText">
-            <b>Vælg en sol!</b>
+            <b>Solcenter</b>
           </div>
           <div class="desc">Der er forskellige sole at vælge imellem, dog hvis du er ny, så har vi en guide for mere information.</div>
           </div>
@@ -92,12 +92,19 @@
             </div>
 
           </div>
+</div>
+          <div class="sliderbox">
+            <input type="range" min="1" max="60" value="1" class="slider" id="myRange"><br/>
 
-          <div class="sliderbox" >
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange"><br/>
-            <div class="samletpris">
-              <span>Din pris er:</span><br/>
-              <b id="demo"></b><b>kr.</b>
+            <div class="samletflex">
+              <div class="samletpris">
+                <span>Din tid er:</span><br/>
+                <b id="tid"></b> <b>&nbsp;minutter</b>
+              </div>
+              <div class="samletpris rightalign">
+                <span>Din pris er:</span><br/>
+                <b id="pris"></b><b>kr.</b>
+              </div>
             </div>
           </div>
 
@@ -127,12 +134,15 @@
 
     <script>
     var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
+var output = document.getElementById("tid");
+var pris = document.getElementById("pris");
 output.innerHTML = slider.value; // Display the default slider value
+pris.innerHTML = slider.value * 1.5;
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function() {
 output.innerHTML = this.value;
+pris.innerHTML = this.value * 1.5;
 }
     </script>
 

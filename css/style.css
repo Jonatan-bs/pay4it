@@ -22,8 +22,11 @@ body {
 }
 
 .toptext {
-  width: 85%;
   margin: 0 auto;
+  padding-left: 7%;
+  padding-right: 7%;
+  border-top: 40px solid #000;
+
 }
 
 .areaInside {
@@ -36,18 +39,19 @@ body {
 }
 
 .introductionText {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 75px;
-  border-bottom: 5px solid #666;
+
   padding-bottom: 5px;
   padding-top: 50px;
 }
 
 .desc {
-  font-family: 'Roboto', sans-serif;
-  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 25px;
   text-align: justify;
-  margin-top: 10px
+  margin-top: 10px;
+  padding-bottom: 50px;
 }
 
 .kabineFlex {
@@ -63,7 +67,7 @@ body {
 		width: 33.3%;
 		height: 360px;
 		background:#529e66;
-		font-family: 'Lato', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
@@ -135,7 +139,6 @@ body {
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
-  border-radius: 10px;
   margin-bottom: 20px;
 }
 
@@ -152,7 +155,6 @@ body {
   height: 50px; /* Slider handle height */
   background: #333; /* Green background */
   cursor: pointer; /* Cursor on hover */
-  border-radius: 10px;
 }
 
 .slider::-moz-range-thumb {
@@ -162,8 +164,17 @@ body {
   cursor: pointer; /* Cursor on hover */
 }
 
+.samletflex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rightalign {
+  text-align: right;
+}
+
 .samletpris {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 
 }
 
@@ -191,8 +202,8 @@ body {
   border: 0px;
   margin: 0;
   width: 290px;
-  height: 100px;
-  font-family: 'Lato', sans-serif;
+  height: 90px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 25px;
   font-weight: 700;
   border-right: 3px solid #eee;
@@ -210,8 +221,8 @@ body {
   border: 0px;
   margin: 0;
   width: 500px;
-  height: 100px;
-  font-family: 'Lato', sans-serif;
+  height: 90px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 25px;
   font-weight: 700;
 }
@@ -223,13 +234,13 @@ body {
 }
 
 .paymentText {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 35px;
   text-align: center;
   margin: 0 auto;
   width: 500px;
-  border-bottom: 5px solid #666;
-  margin-bottom: 21px;
+
+  margin-bottom: 10px;
 }
 
 .paymentMethods {
@@ -243,4 +254,58 @@ body {
 
 .paymentMethods div img {
   width: 200px;
+}
+
+.betalingsmetoder {
+  width: 85%;
+  margin: 0 auto;
+  height: 980px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 100px;
+}
+
+.betalingsknap {
+  width: 100%;
+  height: 225px;
+  font-size: 45px;
+  font-family: 'Montserrat', sans-serif;
+  background: #000;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.betalingsknap:hover {
+  background: #333;
+  cursor: pointer;
+}
+
+.nopadding {
+  padding: 0;
+}
+
+.buttons .back {
+  background: #000;
+  color: white;
+  border: 0px;
+  margin: 0;
+  width: 100%;
+  height: 150px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.buttons .back:hover {
+  background: #333;
+  cursor: pointer;
+
+}
+
+.beloeb {
+  font-size: 35px;
 }
