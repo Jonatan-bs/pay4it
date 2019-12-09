@@ -40,7 +40,7 @@ body {
 
 .introductionText {
   font-family: 'Montserrat', sans-serif;
-  font-size: 75px;
+  font-size: 65px;
 
   padding-bottom: 5px;
   padding-top: 50px;
@@ -66,7 +66,7 @@ body {
 .kabine {
 		width: 33.3%;
 		height: 360px;
-		background:#529e66;
+		background:#A5A266;
 		font-family: 'Montserrat', sans-serif;
 		display: flex;
 		flex-direction: column;
@@ -74,6 +74,15 @@ body {
 		position: relative;
     color: #eee;
 	}
+
+  .closed {
+    background: #555;
+    color: #ccc;
+  }
+
+  .closed .tid {
+    color: #cf5555;
+  }
 
   .middle {
     width: 33.4%
