@@ -76,12 +76,12 @@ body {
 	}
 
   .closed {
-    background: #555;
+    background: #404040;
     color: #ccc;
   }
 
   .closed .tid {
-    color: #cf5555;
+    color: #ff5454;
   }
 
   .middle {
