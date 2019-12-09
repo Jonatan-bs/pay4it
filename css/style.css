@@ -40,7 +40,7 @@ body {
 
 .introductionText {
   font-family: 'Montserrat', sans-serif;
-  font-size: 65px;
+  font-size: 60px;
 
   padding-bottom: 5px;
   padding-top: 50px;
@@ -317,4 +317,17 @@ body {
 
 .beloeb {
   font-size: 35px;
+}
+
+.firsttext {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  height: 1450px;
+  overflow: auto;
+  padding-right: 7%;
+  padding-left: 7%;
+}
+
+.firsttext img {
+  width: 99%;
 }
