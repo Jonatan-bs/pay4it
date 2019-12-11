@@ -476,6 +476,7 @@ document.getElementById('automat').addEventListener('click',function(){
     document.querySelector('.hyldeFlex').classList.remove('active')
     document.querySelector('.kabineFlex').classList.add('active')
     this.textContent = 'Automat';
+    document.querySelector('.symbolsText').classList.remove('inactive')
     closeChosenBooth()
   } else {
     document.querySelector('.checkoutBtns').classList.remove('active')
@@ -484,6 +485,7 @@ document.getElementById('automat').addEventListener('click',function(){
 
     document.querySelector('.hyldeFlex').classList.add('active')
     document.querySelector('.kabineFlex').classList.remove('active')
+    document.querySelector('.symbolsText').classList.add('inactive')
   }
 
 })
@@ -610,7 +612,11 @@ let price = 0;
 shoppingbag.products.forEach(function(elm){
   price = price + Number(elm.price)
 })
-price = price + shoppingbag.booth[1] + "kr.";
+let bbprice = 0;
+if (shoppingbag.booth[1]) {
+  bbprice = shoppingbag.booth[1]
+}
+price = price + bbprice + "kr.";
 
 span = document.createElement('span')
 span.classList.add('sumPrice');
