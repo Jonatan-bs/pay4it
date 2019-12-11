@@ -106,37 +106,38 @@ let Pay4it = {
 ////////////
 // TIMER function
 ////////
-
+var timer;
     function startTimer(duration, display) {
-        let start = Date.now(),
-            diff,
-            minutes,
-            seconds;
-        function timer() {
-            // get the number of seconds that have elapsed since
-            // startTimer() was called
-            diff = duration - (((Date.now() - start) / 1000) | 0);
+            let start = Date.now(),
+                diff,
+                minutes,
+                seconds;
+            timer = function() {
+                // get the number of seconds that have elapsed since
+                // startTimer() was called
+                diff = duration - (((Date.now() - start) / 1000) | 0);
 
-            // does the same job as parseInt truncates the float
-            minutes = (diff / 60) | 0;
-            seconds = (diff % 60) | 0;
+                // does the same job as parseInt truncates the float
+                minutes = (diff / 60) | 0;
+                seconds = (diff % 60) | 0;
 
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            display.textContent = minutes + ":" + seconds;
+                display.textContent = minutes + ":" + seconds;
 
-            //STOP TIMER WHEN IT HITS 0
-            if (diff<1) {
-              clearInterval(timerInt)
-              createOrUpdateBooths()
-              return;
-            }
-        };
-        // we don't want to wait a full second before the timer starts
-        timer();
-        let timerInt = setInterval(timer, 1000);
+                //STOP TIMER WHEN IT HITS 0
+                if (diff<1) {
+                  clearInterval(timerInt)
+                  createOrUpdateBooths()
+                  return;
+                }
+            };
+            // we don't want to wait a full second before the timer starts
+            timer();
+            let timerInt = setInterval(timer, 1000);
     }
+
 
 //// CREATE BOOTH DOM OBJs
 function createOrUpdateBooths(){
@@ -157,7 +158,9 @@ if (firstLoad) {
   p.textContent = 'X';
   div.appendChild(p)
 
-  for (let a=0; a<response.Booths.length*3; a++) {
+let boothAmnt = response.Booths.length
+
+  for (let a=0; a<boothAmnt; a++) {
 
 //// ONLY FOR TEST
 let i = a%response.Booths.length
@@ -179,6 +182,10 @@ if(booth.IsInUse){
   divWrap.className = 'kabine';
   //divWrap.style.background = pay4it.bgHex[i];
 }
+if (boothAmnt<5) {
+divWrap.classList.add('smallBooths')
+}
+
 let div = document.createElement('div');
 div.className = 'info';
 let b = document.createElement('b');
@@ -253,8 +260,14 @@ divWrap.addEventListener('click',function(){
     })
     let clone = self.cloneNode(true)
     clone.classList.remove('inactive')
+
+    if (clone.classList.contains('smallBooths')) {
+      clone.classList.remove('smallBooths')
+    }
+
+
     chosenWrap.appendChild(clone)
-    chosenWrap.setAttribute('style','z-index:1');
+    chosenWrap.setAttribute('style','z-index:1; opacity:1;');
 
     /// UPDATE SLIDER
     sliderbox.classList.add('active')
@@ -535,10 +548,13 @@ bagDiv.appendChild(p)
 
 let spanBname = document.createElement('span')
 bagDiv.appendChild(spanBname)
+spanBname.classList.add('Bname')
 let spanBhours = document.createElement('span')
 bagDiv.appendChild(spanBhours)
+spanBhours.classList.add('Btime')
 let spanBprice = document.createElement('span')
 bagDiv.appendChild(spanBprice)
+spanBprice.classList.add('Bprice')
 let br = document.createElement('br')
 
 
@@ -547,7 +563,7 @@ if (shoppingbag.booth.length>0) {
   let bName = shoppingbag.booth[5]+ ": "
   spanBname.textContent = bName;
   let bHours = shoppingbag.booth[4]
-  spanBhours.textContent = bHours + "t "
+  spanBhours.textContent = bHours + " min. "
   let bPrice = shoppingbag.booth[1]
   spanBprice.textContent = bPrice + "kr."
   bagDiv.appendChild(br)
@@ -555,8 +571,10 @@ if (shoppingbag.booth.length>0) {
 
 let spanPname = document.createElement('span')
 bagDiv.appendChild(spanPname)
+spanPname.classList.add('Pname')
 let spanPprice = document.createElement('span')
 bagDiv.appendChild(spanPprice)
+spanPprice.classList.add('Pprice')
 
 if (shoppingbag.products.length>0) {
   spanPname.textContent = 'Automat: ';
@@ -588,7 +606,7 @@ function debounce(func){
     if(timer) {
       clearTimeout(timer)
     };
-    timer = setTimeout(func,300000);
+    timer = setTimeout(func,120000);
   };
 }
 let reloadCountdown = debounce(function(){

@@ -111,6 +111,10 @@ body {
   .kabine.inactive{
     display:none;
   }
+  .kabine.smallBooths {
+    width: 50%;
+    height: 440px;
+}
 
   .closed {
     background: #333;
@@ -462,7 +466,7 @@ display: block;
     padding: 40px;
     box-sizing: border-box;
     z-index: -1;
-    opacity: 1;
+    opacity: 0;
 }
 .chosenWrap .kabine {
     margin: 0 auto;
