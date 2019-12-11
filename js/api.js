@@ -600,7 +600,7 @@ if (shoppingbag.products.length>0) {
 
 if (shoppingbag.booth.length>0 || shoppingbag.products.length>0) {
 let div = document.createElement('div')
-div.classList('sumWrap')
+div.classList.add('sumWrap')
 let span = document.createElement('span')
 span.classList.add('sum');
 span.textContent = 'SUM';
