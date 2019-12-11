@@ -158,7 +158,7 @@ if (firstLoad) {
   p.textContent = 'X';
   div.appendChild(p)
 
-let boothAmnt = response.Booths.length
+let boothAmnt = response.Booths.length*3
 
   for (let a=0; a<boothAmnt; a++) {
 
