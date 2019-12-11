@@ -550,21 +550,29 @@ bagDiv.innerHTML = "";
 let p = document.createElement('p');
 p.textContent = 'INDKØBSKURV';
 bagDiv.appendChild(p)
+let boothWrap = document.createElement('div')
+let productsWrap = document.createElement('div')
+boothWrap.classList.add('boothWrap')
+productsWrap.classList.add('productsWrap')
+bagDiv.appendChild(boothWrap)
+bagDiv.appendChild(productsWrap)
 
 let spanBname = document.createElement('span')
-bagDiv.appendChild(spanBname)
+boothWrap.appendChild(spanBname)
 spanBname.classList.add('Bname')
 let spanBhours = document.createElement('span')
-bagDiv.appendChild(spanBhours)
+boothWrap.appendChild(spanBhours)
 spanBhours.classList.add('Btime')
 let spanBprice = document.createElement('span')
-bagDiv.appendChild(spanBprice)
+boothWrap.appendChild(spanBprice)
 spanBprice.classList.add('Bprice')
 let br = document.createElement('br')
 
 
 
 if (shoppingbag.booth.length>0) {
+
+
   let bName = shoppingbag.booth[5]+ ": "
   spanBname.textContent = bName;
   let bHours = shoppingbag.booth[4]
@@ -575,10 +583,10 @@ if (shoppingbag.booth.length>0) {
 }
 
 let spanPname = document.createElement('span')
-bagDiv.appendChild(spanPname)
+productsWrap.appendChild(spanPname)
 spanPname.classList.add('Pname')
 let spanPprice = document.createElement('span')
-bagDiv.appendChild(spanPprice)
+productsWrap.appendChild(spanPprice)
 spanPprice.classList.add('Pprice')
 
 if (shoppingbag.products.length>0) {
