@@ -81,7 +81,7 @@ body {
   width: 100%;
   flex-wrap: wrap;
   overflow: auto;
-  max-height: 1080px;
+  max-height: 1293px;
   transition: all .2s ease;
   position: relative;
 }
@@ -399,14 +399,18 @@ display: block;
 
 .hyldeFlex {
     display: none;
-    /*justify-content: space-between;*/
     width: 100%;
     flex-wrap: wrap;
     overflow: auto;
-    max-height: 720px;
+    max-height: 1293px;
+transition: all .2s ease;
+
 }
 .hyldeFlex.active {
   display: flex;
+}
+.hyldeFlex.small {
+    max-height: 800px;
 }
 
 .hylde {

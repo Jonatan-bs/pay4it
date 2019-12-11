@@ -424,8 +424,8 @@ function createAutomat(){
     divHylde.addEventListener('click', function(){
         if (!this.classList.contains('active')) {
           this.classList.add('active')
-
           shoppingbag.products.push(product)
+          document.querySelector('.hyldeFlex').classList.add('small')
         } else {
           this.classList.remove('active')
           var removeIndex = shoppingbag.products.map(function(item) { return item.id; }).indexOf(product.id);
@@ -440,9 +440,11 @@ function createAutomat(){
             document.querySelector('.checkoutBtns').classList.add('active')
             return;
           }
-
         }
+
         if (nextStep == false) {
+          document.querySelector('.hyldeFlex').classList.remove('small')
+
           document.querySelector('.checkoutBtns').classList.remove('active')
         }
       /*  document.querySelector('.checkoutBtns').classList.remove('active')
@@ -474,6 +476,8 @@ document.getElementById('automat').addEventListener('click',function(){
 
   if (document.querySelector('.hyldeFlex').classList.contains('active')) {
     document.querySelector('.hyldeFlex').classList.remove('active')
+    document.querySelector('.hyldeFlex').classList.remove('small')
+
     document.querySelector('.kabineFlex').classList.add('active')
     this.textContent = 'Automat';
     document.querySelector('.symbolsText').classList.remove('inactive')
@@ -501,6 +505,7 @@ document.querySelector('.addMoreToBag').addEventListener('click',function(){
   nextStep = true;
   //IF BOOTHS OPEN ELSE IF AUTOMAT
   if (document.querySelector('.kabineFlex').classList.contains('active')) {
+    document.querySelector('.hyldeFlex').classList.add('small')
     document.querySelector('#automat').textContent = 'Kabine';
     let price = Number(document.querySelector("#pris").innerHTML);
     let time = Number(document.querySelector("#tid").innerHTML);
