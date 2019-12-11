@@ -8,6 +8,22 @@ body {
   background:#a03f3f;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
 .mainDisplay {
     margin: 0 auto;
     width: 1080px;
@@ -247,6 +263,10 @@ body {
   font-size: 25px;
   font-weight: 700;
   border-right: 3px solid #eee;
+}
+
+.first {
+  border-left: 3px solid #eee;
 }
 
 .buttons .firstauto:hover {
