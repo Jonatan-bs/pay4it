@@ -565,7 +565,6 @@ spanBhours.classList.add('Btime')
 let spanBprice = document.createElement('span')
 boothWrap.appendChild(spanBprice)
 spanBprice.classList.add('Bprice')
-//let br = document.createElement('br')
 
 
 
@@ -599,6 +598,28 @@ if (shoppingbag.products.length>0) {
   spanPprice.textContent = bPrice + "kr. "
 }
 
+if (shoppingbag.booth.length>0 || shoppingbag.products.length>0) {
+let div = document.createElement('div')
+div.classList('sumWrap')
+let span = document.createElement('span')
+span.classList.add('sum');
+span.textContent = 'SUM';
+div.appendChild(span)
+
+let price = 0;
+shoppingbag.products.forEach(function(elm){
+  price = price + Number(elm.price)
+})
+price = price + shoppingbag.booth[1];
+
+span = document.createElement('span')
+span.classList.add('sumPrice');
+span.textContent = price;
+div.appendChild(span)
+
+bagDiv.appendChild(div)
+
+}
 /// IF SHOPPINGBAG IS EMPTY
 if (!shoppingbag.booth.length>0 && !shoppingbag.products.length>0){
   p = document.createElement('p');
