@@ -9,10 +9,15 @@ body {
 }
 
 .mainDisplay {
-  margin: 0 auto;
-  width: 1080px;
-  height: 1920px;
-  background: #ffffff;
+    margin: 0 auto;
+    width: 1080px;
+    height: 1920px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
 }
 
 .area {
@@ -32,7 +37,7 @@ body {
 .areaInside {
   width: 100%;
   margin: 0 auto;
-  height: 100%;
+  /* height: 100%;*/
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -55,28 +60,44 @@ body {
 }
 
 .kabineFlex {
-  display: flex;
-  justify-content: space-between;
+  display: none;
+  /*justify-content: space-between;*/
   width: 100%;
   flex-wrap: wrap;
   overflow: auto;
   max-height: 1080px;
+  transition: all .2s ease;
+  position: relative;
+}
+.kabineFlex.active {
+  display: flex;
+}
+.kabineFlex.small {
+  height: 2080px;
+  max-height: 450px;
+  margin-bottom: 120px;
 }
 
 .kabine {
-		width: 33.3%;
+		width: 33.3333333333%;
 		height: 360px;
-		background:#A5A266;
+	/*	background:#A5A266; */
+   background: #002c44;
+   border: 1px solid #f0f0f0;
 		font-family: 'Montserrat', sans-serif;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
 		position: relative;
     color: #eee;
+    box-sizing: border-box;
 	}
+  .kabine.inactive{
+    display:none;
+  }
 
   .closed {
-    background: #404040;
+    background: #333;
     color: #ccc;
   }
 
@@ -131,11 +152,19 @@ body {
     margin-top: 20px;
     color: #000;
 	}
+  .paymentandbuttons{
+    bottom: 0;
+    position: absolute;
+  }
 
 .sliderbox {
   height: 150px;
   width: 85%;
   margin: 0 auto;
+  display: none;
+}
+.sliderbox.active {
+    display: block;
 }
 
 .slider {
@@ -205,7 +234,7 @@ body {
   font-size: 0px;
 }
 
-.buttons .firstauto {
+.firstauto {
   background: #000;
   color: white;
   border: 0px;
@@ -240,6 +269,28 @@ body {
   background: rgba(82, 158, 117, 1);
   cursor: pointer;
 
+}
+.checkoutBtns{
+  /*height: 150px;*/
+width: 85%;
+margin: 0 auto;
+display: none;
+}
+.checkoutBtns.active{
+display: block;
+}
+
+.buttons .nextstep{
+  background: #000;
+  color: #fff;
+  border: 0px;
+  margin: 0;
+  width: 50%;
+  height: 90px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  border-right: 3px solid #eee;
 }
 
 .paymentText {
@@ -317,4 +368,132 @@ body {
 
 .beloeb {
   font-size: 35px;
+}
+
+
+.hyldeFlex {
+    display: none;
+    /*justify-content: space-between;*/
+    width: 100%;
+    flex-wrap: wrap;
+    overflow: auto;
+    max-height: 720px;
+}
+.hyldeFlex.active {
+  display: flex;
+}
+
+.hylde {
+    width: 25%;
+    border: 1px solid #cdcdcd;
+    height: 360px;
+    background: #fff;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    color: #000;
+    text-align: center;
+    box-sizing: border-box;
+}
+.hyldeImg {
+    width: 90%;
+    margin: 0 auto;
+    height: 70%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.hylde.active {
+    transform: scale(.9);
+    border: 10px solid #696969;
+}
+
+.paysymbol {
+    width: 25%;
+    padding-bottom: 70px;
+}
+.symbols{
+  font-size: 0px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-bottom: 80px;
+}
+.symbols p {
+ width: 100%;
+ font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+}
+.addMoreToBag {
+    color: #a52a2a;
+    text-decoration: underline;
+}
+.chosenWrap {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #333;
+    padding: 40px;
+    box-sizing: border-box;
+    z-index: -1;
+    opacity: 1;
+}
+.chosenWrap .kabine {
+    margin: 0 auto;
+    /*transform: scale(1.5) translate(0%, 25%);*/
+}
+.symbolsText.inactive span{
+  display: none;
+}
+.qrWrap {
+    height: 100%;
+    width: 100%;
+    background: #000000e8;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .3s;
+    /* display: none; */
+}
+.qrbox {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    height: 500px;
+    width: 500px;
+}
+.qrbox p {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+}
+.qrbox img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    height: 250px;
+    width: 250px;
+}
+.chosenWrap p {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    margin: 0;
+    font-size: 50px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+
 }
