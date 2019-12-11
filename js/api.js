@@ -460,23 +460,27 @@ createAutomat()
 
 ///////////// TOGGLE BETWEEN AUTOMAT & KABINER
 document.getElementById('automat').addEventListener('click',function(){
-  shoppingbag = {booth:[],products:[]}
+  shoppingbag = {booth:[], products:[]}
   nextStep = false;
   document.querySelector('.symbolsText').classList.remove('inactive')
 
-document.querySelectorAll('.hylde').forEach(function(elm){
-  if (elm.classList.contains('active')) {
-elm.classList.remove('active')
-  }
-})
+  document.querySelectorAll('.hylde').forEach(function(elm){
+    if (elm.classList.contains('active')) {
+  elm.classList.remove('active')
+    }
+  })
+
+
 
   if (document.querySelector('.hyldeFlex').classList.contains('active')) {
     document.querySelector('.hyldeFlex').classList.remove('active')
     document.querySelector('.kabineFlex').classList.add('active')
+    this.textContent = 'Automat';
     closeChosenBooth()
   } else {
     document.querySelector('.checkoutBtns').classList.remove('active')
     document.querySelector('.sliderbox').classList.remove('active')
+    this.textContent = 'Kabine';
 
     document.querySelector('.hyldeFlex').classList.add('active')
     document.querySelector('.kabineFlex').classList.remove('active')
@@ -495,6 +499,7 @@ document.querySelector('.addMoreToBag').addEventListener('click',function(){
   nextStep = true;
   //IF BOOTHS OPEN ELSE IF AUTOMAT
   if (document.querySelector('.kabineFlex').classList.contains('active')) {
+    document.querySelector('#automat').textContent = 'Kabine';
     let price = Number(document.querySelector("#pris").innerHTML);
     let time = Number(document.querySelector("#tid").innerHTML);
     let id = Number(document.querySelector(".chosenWrap").querySelector(".kabine").dataset.id)
