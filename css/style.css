@@ -45,7 +45,7 @@ body {
 
 .introductionText {
   font-family: 'Montserrat', sans-serif;
-  font-size: 65px;
+  font-size: 60px;
 
   padding-bottom: 5px;
   padding-top: 50px;
@@ -155,6 +155,8 @@ body {
   .paymentandbuttons{
     bottom: 0;
     position: absolute;
+    width: 100%;
+    left: 0;
   }
 
 .sliderbox {
@@ -239,7 +241,7 @@ body {
   color: white;
   border: 0px;
   margin: 0;
-  width: 290px;
+  width: 50%;
   height: 90px;
   font-family: 'Montserrat', sans-serif;
   font-size: 25px;
@@ -494,6 +496,17 @@ display: block;
     margin: 0;
     font-size: 50px;
     color: #fff;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;}
 
+.firsttext {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  height: 1450px;
+  overflow: auto;
+  padding-right: 7%;
+  padding-left: 7%;
+}
+
+.firsttext img {
+  width: 99%;
 }
