@@ -554,8 +554,7 @@ let boothWrap = document.createElement('div')
 let productsWrap = document.createElement('div')
 boothWrap.classList.add('boothWrap')
 productsWrap.classList.add('productsWrap')
-bagDiv.appendChild(boothWrap)
-bagDiv.appendChild(productsWrap)
+
 
 let spanBname = document.createElement('span')
 boothWrap.appendChild(spanBname)
@@ -572,7 +571,7 @@ let br = document.createElement('br')
 
 if (shoppingbag.booth.length>0) {
 
-
+bagDiv.appendChild(boothWrap)
   let bName = shoppingbag.booth[5]+ ": "
   spanBname.textContent = bName;
   let bHours = shoppingbag.booth[4]
@@ -591,6 +590,7 @@ spanPprice.classList.add('Pprice')
 
 if (shoppingbag.products.length>0) {
   spanPname.textContent = 'Automat: ';
+  bagDiv.appendChild(productsWrap)
 
   let bPrice = 0;
   shoppingbag.products.forEach(function(elm){
