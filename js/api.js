@@ -603,7 +603,7 @@ let div = document.createElement('div')
 div.classList.add('sumWrap')
 let span = document.createElement('span')
 span.classList.add('sum');
-span.textContent = 'Sum ';
+span.textContent = 'Sum: ';
 div.appendChild(span)
 
 let price = 0;
