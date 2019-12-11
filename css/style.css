@@ -142,7 +142,7 @@ body {
 	.kabineNavn {
 		text-align: center;
 		font-size: 25px;
-		text-transform: uppercase;
+
 	}
 
 	.pris {
@@ -437,22 +437,25 @@ display: block;
 }
 
 .paysymbol {
-    width: 25%;
-    padding-bottom: 70px;
+    width: 15%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .symbols{
   font-size: 0px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    padding-bottom: 80px;
+    padding-bottom: 40px;
 }
+
 .symbols p {
  width: 100%;
  font-family: 'Montserrat', sans-serif;
     font-size: 25px;
     font-weight: 700;
     text-align: center;
+    margin: 10px 0px;
 }
 .addMoreToBag {
     color: #a52a2a;
@@ -475,6 +478,7 @@ display: block;
 .symbolsText.inactive span{
   display: none;
 }
+
 .qrWrap {
     height: 100%;
     width: 100%;
@@ -533,4 +537,76 @@ display: block;
 
 .firsttext img {
   width: 99%;
+}
+
+.shoppingBag {
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.shoppingBag p {
+  font-size: 30px;
+  padding-bottom: 10px;
+}
+
+.boothWrap {
+  width: 47%;
+}
+
+.productsWrap {
+  width: 47%;
+}
+
+.sumWrap {
+  width: 100%;
+  padding-top: 30px;
+  display: block;
+  text-align: left;
+  border-bottom: 1px solid #002c44;
+  font-size: 30px;
+}
+
+.shoppingBag .sum {
+  text-align: left;
+}
+
+.shoppingBag .sumPrice {
+  font-weight: 400;
+  text-align: left;
+}
+
+.shoppingBag .Bname {
+  display: block;
+  font-size: 30px;
+  text-align: left;
+  margin: 0 auto;
+  border-bottom: 1px solid #333;
+}
+.shoppingBag .Btime {
+  display: block;
+  font-weight: 400;
+  text-align: left;
+}
+
+.shoppingBag .Bprice {
+  display: block;
+  font-weight: 400;
+  text-align: left;
+}
+
+.shoppingBag .Pname {
+  display: block;
+  font-size: 30px;
+  text-align: left;
+  margin: 0 auto;
+  border-bottom: 1px solid #333;
+
+}
+
+.shoppingBag .Pprice {
+  display: block;
+  font-weight: 400;
+  text-align: left;
 }
