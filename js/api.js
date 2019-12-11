@@ -565,7 +565,7 @@ spanBhours.classList.add('Btime')
 let spanBprice = document.createElement('span')
 boothWrap.appendChild(spanBprice)
 spanBprice.classList.add('Bprice')
-let br = document.createElement('br')
+//let br = document.createElement('br')
 
 
 
@@ -578,7 +578,7 @@ bagDiv.appendChild(boothWrap)
   spanBhours.textContent = bHours + " min. "
   let bPrice = shoppingbag.booth[1]
   spanBprice.textContent = bPrice + "kr."
-  bagDiv.appendChild(br)
+  //bagDiv.appendChild(br)
 }
 
 let spanPname = document.createElement('span')
