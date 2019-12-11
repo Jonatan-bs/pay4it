@@ -571,7 +571,7 @@ spanBprice.classList.add('Bprice')
 if (shoppingbag.booth.length>0) {
 
 bagDiv.appendChild(boothWrap)
-  let bName = shoppingbag.booth[5]+ ": "
+  let bName = shoppingbag.booth[5]+ ""
   spanBname.textContent = bName;
   let bHours = shoppingbag.booth[4]
   spanBhours.textContent = bHours + " min. "
@@ -588,7 +588,7 @@ productsWrap.appendChild(spanPprice)
 spanPprice.classList.add('Pprice')
 
 if (shoppingbag.products.length>0) {
-  spanPname.textContent = 'Automat: ';
+  spanPname.textContent = 'Automat';
   bagDiv.appendChild(productsWrap)
 
   let bPrice = 0;
@@ -610,7 +610,7 @@ let price = 0;
 shoppingbag.products.forEach(function(elm){
   price = price + Number(elm.price)
 })
-price = price + shoppingbag.booth[1];
+price = price + shoppingbag.booth[1] + "kr.";
 
 span = document.createElement('span')
 span.classList.add('sumPrice');
