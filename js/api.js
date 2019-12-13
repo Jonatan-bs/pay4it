@@ -21,6 +21,8 @@ signalRres(function(data){
     })
   } else if(data.DeviceID==561 && data.IsInUse == false){
     console.log(data.ID + ": is done");
+    console.log(new Date());
+    createOrUpdateBooths()
   } else if(data.DeviceID==561) {
   //  console.log(data);
   }
@@ -38,7 +40,6 @@ let Pay4it = {
       this.auth = auth;
       this.cache = cache;
       this.json = json;
-      this.bgHex = ['#A5A266', '#68A365', '#65A381', '#65A3A0', '#6587A3', '#6568A3', '#8165A3', '#A065A3', '#A58366']
     },
     getResponse() {
       return new Promise((resolve, reject) => {
@@ -82,10 +83,9 @@ let Pay4it = {
         "Minutes": minutes,
         "Seconds": seconds,
         "TotalAmount": totalAmount,
-        //"Shelves": shelvesArr
       }
-
         param = JSON.stringify(param)
+
 
         xhr.send(param)
 
@@ -106,30 +106,40 @@ let Pay4it = {
 ////////////
 // TIMER function
 ////////
-var timer;
+
     function startTimer(duration, display) {
-            let start = Date.now(),
-                diff,
-                minutes,
-                seconds;
-            timer = function() {
+            duration += 1;
+            let start = Date.now();
+
+             function timer(apiError = false) {
                 // get the number of seconds that have elapsed since
                 // startTimer() was called
-                diff = duration - (((Date.now() - start) / 1000) | 0);
+                let diff = duration - (((Date.now() - start) / 1000));
 
                 // does the same job as parseInt truncates the float
-                minutes = (diff / 60) | 0;
-                seconds = (diff % 60) | 0;
+                let minutes = (diff / 60) | 0;
+                let seconds = (diff % 60) | 0;
 
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
 
                 display.textContent = minutes + ":" + seconds;
 
+                //IF API ERROR
+                if (apiError) {
+                  clearInterval(timerInt)
+                  return;
+                }
+
                 //STOP TIMER WHEN IT HITS 0
                 if (diff<1) {
                   clearInterval(timerInt)
                   createOrUpdateBooths()
+                  return;
+                }
+                //IF API ERROR
+                if (apiError) {
+                  clearInterval(timerInt)
                   return;
                 }
             };
@@ -142,7 +152,7 @@ var timer;
 //// CREATE BOOTH DOM OBJs
 function createOrUpdateBooths(){
 pay4it.getResponse().then((response) => {
-
+console.log(response);
 /// CREATE DOM IF FIRST LOAD ELSE UPDATE
 if (firstLoad) {
 
@@ -158,7 +168,8 @@ if (firstLoad) {
   p.textContent = 'X';
   div.appendChild(p)
 
-let boothAmnt = response.Booths.length*3
+//// ONLY FOR TEST
+let boothAmnt = response.Booths.length
 
   for (let a=0; a<boothAmnt; a++) {
 
@@ -172,10 +183,7 @@ let i = a%response.Booths.length
 let divWrap = document.createElement('div');
 
 divWrap.setAttribute('data-id',booth.ID)
-/*
-divWrap.setAttribute('data-row',Math.floor(i/3))
-divWrap.setAttribute('data-col',i%3)
-*/
+
 if(booth.IsInUse){
   divWrap.className = 'kabine closed';
 } else {
@@ -269,6 +277,9 @@ divWrap.addEventListener('click',function(){
     chosenWrap.appendChild(clone)
     chosenWrap.setAttribute('style','z-index:1; opacity:1;');
 
+    document.querySelector('.paymentandbuttons').classList.add('inactive')
+    document.querySelector('.backButton').classList.remove('inactive')
+
     /// UPDATE SLIDER
     sliderbox.classList.add('active')
     checkoutBtns.classList.add('active')
@@ -327,7 +338,12 @@ response.Booths.forEach(function(booth){
   div.querySelector('img').setAttribute('src','./img/solarie-closedgrey2.svg')
   let time = booth.RunTime
   let span = div.querySelector('span');
-  startTimer(time, span)
+
+  if (booth.RunTime==0 && booth.IsInUse==true) {
+    span.textContent = "Maskinfejl"
+  } else {
+    startTimer(time, span)
+  }
   } else if (div.dataset.id == booth.ID && booth.IsInUse == false) {
     div.classList.remove('closed');
   //  div.setAttribute('style', '')
@@ -369,6 +385,8 @@ function closeChosenBooth(){
       p.textContent = 'X';
       chosenWrap.appendChild(p)
       shoppingbag.booth = []
+      document.querySelector('.paymentandbuttons').classList.remove('inactive')
+      document.querySelector('.backButton').classList.add('inactive')
 }
 
 
@@ -423,6 +441,8 @@ function createAutomat(){
 
     divHylde.addEventListener('click', function(){
         if (!this.classList.contains('active')) {
+          document.querySelector('.paymentandbuttons').classList.add('inactive')
+          document.querySelector('.backButton').classList.remove('inactive')
           this.classList.add('active')
           shoppingbag.products.push(product)
           document.querySelector('.hyldeFlex').classList.add('small')
@@ -431,6 +451,7 @@ function createAutomat(){
           var removeIndex = shoppingbag.products.map(function(item) { return item.id; }).indexOf(product.id);
           // remove object
           shoppingbag.products.splice(removeIndex, 1);
+
         }
 
         /// SHOW PAYMENT CHOISES IF ONE OR MORE ARE CHOSEN
@@ -444,8 +465,9 @@ function createAutomat(){
 
         if (nextStep == false) {
           document.querySelector('.hyldeFlex').classList.remove('small')
-
           document.querySelector('.checkoutBtns').classList.remove('active')
+          document.querySelector('.paymentandbuttons').classList.remove('inactive')
+          document.querySelector('.backButton').classList.add('inactive')
         }
       /*  document.querySelector('.checkoutBtns').classList.remove('active')
         document.querySelector('.sliderbox').classList.remove('active')*/
@@ -506,7 +528,9 @@ document.querySelector('.addMoreToBag').addEventListener('click',function(){
   //IF BOOTHS OPEN ELSE IF AUTOMAT
   if (document.querySelector('.kabineFlex').classList.contains('active')) {
     document.querySelector('.hyldeFlex').classList.add('small')
-    document.querySelector('#automat').textContent = 'Kabine';
+  //  document.querySelector('#automat').textContent = 'Kabine';
+  document.querySelector('.paymentandbuttons').classList.add('inactive')
+  document.querySelector('.backButton').classList.remove('inactive')
     let price = Number(document.querySelector("#pris").innerHTML);
     let time = Number(document.querySelector("#tid").innerHTML);
     let id = Number(document.querySelector(".chosenWrap").querySelector(".kabine").dataset.id)
@@ -534,19 +558,61 @@ document.querySelector('.qrWrap').setAttribute('style','z-index:-1; opacity:0;')
 
 document.querySelector('.qrbox').addEventListener('click',function(e){
   let id = shoppingbag.booth[0];
-  let price = shoppingbag.booth[1];
   let minutes = shoppingbag.booth[2];
   let seconds = shoppingbag.booth[3];
-  //console.log(561 +" "+id+ " " +minutes+ " " +seconds+ " " +price);
+  let price = shoppingbag.booth[1];
+
+/*  console.log(id);
+  console.log(minutes);
+  console.log(seconds);
+  console.log(price); */
+  // startMachine(deviceID, boothID, minutes, seconds, totalAmount, func) {
 
   pay4it.startMachine(561, id, minutes,seconds, price,function(){
     location.reload()
-  })
+})
 
 
 })
 
 
+
+//BACK button
+  document.querySelector('.backButton').addEventListener('click',function(){
+    let hyldeFlex = document.querySelector('.hyldeFlex')
+    let kabineFlex =   document.querySelector('.kabineFlex')
+    let sliderbox = document.querySelector('.sliderbox')
+    if (nextStep) {
+      sliderbox.classList.add('active')
+      hyldeFlex.classList.remove('active')
+      hyldeFlex.classList.remove('small')
+      kabineFlex.classList.add('active')
+      nextStep = false;
+      document.querySelector('.symbolsText').classList.remove('inactive')
+      shoppingbag.products = []
+      let hylde = document.querySelectorAll('.hylde')
+      for (let i = 0; i < hylde.length; i++) {
+        if (hylde[i].classList.contains('active')) {
+          hylde[i].classList.remove('active')
+        }
+      }
+
+    } else if (kabineFlex.classList.contains('active')) {
+      closeChosenBooth()
+
+    } else if (hyldeFlex.classList.contains('active')) {
+      document.querySelector('.checkoutBtns').classList.remove('active')
+      document.querySelector('.paymentandbuttons').classList.remove('inactive')
+      this.classList.add('inactive')
+      hyldeFlex.classList.remove('small')
+      let hylde = document.querySelectorAll('.hylde')
+      for (let i = 0; i < hylde.length; i++) {
+        if (hylde[i].classList.contains('active')) {
+          hylde[i].classList.remove('active')
+        }
+      }
+    }
+  })
 
 
 
@@ -663,4 +729,10 @@ document.addEventListener('click',function(){
 reloadCountdown()
 // EASY WORKAROUND FOR KEEPING SHOPPING BAG UP TO DATE
 updateBag()
+/*
+pay4it.startMachine(561, 5281, 10, 0, 100, function(a){
+  console.log(a);
+})*/
+//startMachine(deviceID, boothID, minutes, seconds, totalAmount, func)
+
 })
